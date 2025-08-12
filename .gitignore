@@ -1,0 +1,16 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs / temporários
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+
+# Build/Cache
+dist/
+build/
+.cache/

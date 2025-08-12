@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caixa Rápido (Web)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+  <div class="container">
+    <h1>Caixa Rápido</h1>
+    <div class="input-row">
+      <label for="valor">Valor (R$)</label>
+      <input id="valor" type="text" inputmode="decimal" placeholder="0,00" autofocus />
+    </div>
+    <div class="buttons">
+      <button id="btnVenda" class="btn btn-venda">Venda</button>
+      <button id="btnSaque" class="btn btn-saque">Saque (30%)</button>
+      <button id="btnRetirada" class="btn btn-retirada">Retirada</button>
+      <button id="btnResumo" class="btn btn-resumo">Resumo</button>
+    </div>
+
+    <section class="resumo">
+      <h2>Resumo do Período</h2>
+      <div class="periodo">
+        <div>
+          <label for="from">De</label>
+          <input type="date" id="from">
+        </div>
+        <div>
+          <label for="to">Até</label>
+          <input type="date" id="to">
+        </div>
+        <div class="periodo-actions">
+          <button id="btnAplicar">Aplicar</button>
+          <button id="btnHoje">Hoje</button>
+          <button id="btnMes">Este mês</button>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card"><div class="label">Vendas</div><div class="value" id="vendas">R$ 0,00</div></div>
+        <div class="card"><div class="label">Saques - Total</div><div class="value" id="saques">R$ 0,00</div></div>
+        <div class="card"><div class="label sub">Saques (30%)</div><div class="value" id="saques30">R$ 0,00</div></div>
+        <div class="card"><div class="label sub">Saques (resto)</div><div class="value" id="saquesResto">R$ 0,00</div></div>
+        <div class="card"><div class="label">Retiradas</div><div class="value" id="retiradas">R$ 0,00</div></div>
+        <div class="card saldo"><div class="label">Saldo</div><div class="value" id="saldo">R$ 0,00</div></div>
+      </div>
+    </section>
+
+    <section class="historico">
+      <details>
+        <summary>Histórico (período aplicado)</summary>
+        <table id="tbl">
+          <thead>
+            <tr>
+              <th>Data/Hora</th>
+              <th>Tipo</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </details>
+    </section>
+
+    <footer>
+      <button id="btnExport">Exportar dados (.json)</button>
+      <button id="btnImport">Importar dados (.json)</button>
+      <input type="file" id="fileImport" accept="application/json" style="display:none">
+      <button id="btnLimpar">Limpar registros (por período)</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').then(function(reg) {
+    console.log('Service Worker registrado', reg);
+  });
+}
+</script>
+</body>
+</html>
